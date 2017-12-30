@@ -16,19 +16,19 @@ env:
     - NGINX_PREFIX=/opt/nginx
 
 before_install:
+  - mkdir --parents download-cache
   - sudo apt-get update -qq
   # Get OpenSSL 1.0.2 from Ubuntu Xenial
   # https://packages.ubuntu.com/xenial-updates/libssl1.0.0
-  - wget "http://de.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu4.10_amd64.deb"
+  - wget -O download-cache/libssl1.0.0_1.0.2g-1ubuntu4.10_amd64.deb "http://de.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu4.10_amd64.deb"
   # https://packages.ubuntu.com/xenial/libssl-dev
-  - wget "http://de.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu4.10_amd64.deb"
-  - sudo dpkg -i libssl*_amd64.deb
+  - wget -O download-cache/libssl-dev_1.0.2g-1ubuntu4.10_amd64.deb "http://de.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu4.10_amd64.deb"
+  - sudo dpkg -i download-cache/libssl*_amd64.deb
   - sudo apt-get install -qq cpanminus
   # Test::Nginx
   - git clone https://github.com/openresty/test-nginx.git
   - cd test-nginx/ && sudo cpanm . && cd ..
   # NGINX source
-  - mkdir --parents download-cache
   - test -f download-cache/nginx-$NGINX_VERSION.tar.gz || wget -O download-cache/nginx-$NGINX_VERSION.tar.gz http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz
 
 install:
