@@ -12,7 +12,7 @@ cache:
 env:
   global:
     - JOBS=4
-    - NGINX_VERSION=1.12.0
+    - NGINX_VERSION=1.12.2
     - NGINX_PREFIX=/opt/nginx
 
 before_install:
