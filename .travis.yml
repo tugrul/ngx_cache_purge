@@ -12,8 +12,10 @@ cache:
 env:
   global:
     - JOBS=4
-    - NGINX_VERSION=1.12.2
     - NGINX_PREFIX=/opt/nginx
+  matrix:
+    - NGINX_VERSION=1.14.0
+    - NGINX_VERSION=1.15.0
 
 before_install:
   - mkdir --parents download-cache
