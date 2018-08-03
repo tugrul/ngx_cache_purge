@@ -15,7 +15,7 @@ env:
     - NGINX_PREFIX=/opt/nginx
   matrix:
     - NGINX_VERSION=1.14.0
-    - NGINX_VERSION=1.15.0
+    - NGINX_VERSION=1.15.2
 
 before_install:
   - mkdir --parents download-cache
@@ -23,9 +23,9 @@ before_install:
   - sudo apt-get install -qq zlib1g-dev libpcre3-dev cpanminus
   # Get OpenSSL 1.0.2 from Ubuntu Xenial
   # https://packages.ubuntu.com/xenial-updates/libssl1.0.0
-  - test -f download-cache/libssl1.0.0_1.0.2g-1ubuntu4.12_amd64.deb || wget -O download-cache/libssl1.0.0_1.0.2g-1ubuntu4.12_amd64.deb "http://de.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu4.12_amd64.deb"
+  - test -f download-cache/libssl1.0.0_1.0.2g-1ubuntu4.13_amd64.deb || wget -O download-cache/libssl1.0.0_1.0.2g-1ubuntu4.13_amd64.deb "http://de.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu4.13_amd64.deb"
   # https://packages.ubuntu.com/xenial/libssl-dev
-  - test -f download-cache/libssl-dev_1.0.2g-1ubuntu4.12_amd64.deb || wget -O download-cache/libssl-dev_1.0.2g-1ubuntu4.12_amd64.deb "http://de.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu4.12_amd64.deb"
+  - test -f download-cache/libssl-dev_1.0.2g-1ubuntu4.13_amd64.deb || wget -O download-cache/libssl-dev_1.0.2g-1ubuntu4.13_amd64.deb "http://de.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu4.13_amd64.deb"
   - sudo dpkg -i download-cache/libssl*_amd64.deb
   # Test::Nginx
   - git clone https://github.com/openresty/test-nginx.git test-nginx
