@@ -1538,8 +1538,7 @@ ngx_http_cache_purge_send_response(ngx_http_request_t *r) {
         return NGX_HTTP_INTERNAL_SERVER_ERROR;
     }
 
-    //p = ngx_snprintf(buf, resp_tmpl_len, resp_body , buf_keydata, r->cache->file.name.data);
-    p = ngx_snprintf(buf, resp_tmpl_len, resp_body , buf_keydata, buf_keydata);
+    p = ngx_snprintf(buf, resp_tmpl_len, resp_body , buf_keydata);
     if (p == NULL) {
         return NGX_HTTP_INTERNAL_SERVER_ERROR;
     }
