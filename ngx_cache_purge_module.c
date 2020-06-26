@@ -1832,7 +1832,9 @@ ngx_http_cache_purge_is_partial(ngx_http_request_t *r) {
     key = c->keys.elts;
 
     /* Only check the first key */
-    return key[0].data[key[0].len - 1] == '*';
+    return c->keys.nelts > 0 // number of array elements
+        && key[0].len > 0 // char length of the key
+        && key[0].data[key[0].len - 1] == '*'; // is the last char an asterix char?
 }
 
 char *
